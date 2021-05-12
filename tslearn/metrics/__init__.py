@@ -22,11 +22,12 @@ from .softdtw_variants import (cdist_soft_dtw, cdist_gak,
                                sigma_gak, gamma_soft_dtw, SquaredEuclidean,
                                SoftDTW)
 from .cycc import cdist_normalized_cc, y_shifted_sbd_vec
+from .msm import msm
 
 __author__ = 'Romain Tavenard romain.tavenard[at]univ-rennes2.fr'
 
-TSLEARN_VALID_METRICS = ["ctw", "dtw", "gak", "sax", "softdtw", "lcss"]
-VARIABLE_LENGTH_METRICS = ["ctw", "dtw", "gak", "sax", "softdtw", "lcss"]
+TSLEARN_VALID_METRICS = ["ctw", "dtw", "gak", "sax", "softdtw", "lcss", "msm"]
+VARIABLE_LENGTH_METRICS = ["ctw", "dtw", "gak", "sax", "softdtw", "lcss", "msm"]
 
 __all__ = [
     "TSLEARN_VALID_METRICS", "VARIABLE_LENGTH_METRICS",

@@ -6,7 +6,7 @@ time series metrics.
 from .neighbors import (
     KNeighborsTimeSeries,
     KNeighborsTimeSeriesClassifier,
-    KNeighborsTimeSeriesRegressor
+    KNeighborsTimeSeriesRegressor,
 )
 
 __all__ = [

@@ -7,14 +7,13 @@ from sklearn.utils.validation import check_is_fitted
 from scipy.spatial.distance import cdist as scipy_cdist
 
 from tslearn.metrics import cdist_dtw, cdist_ctw, cdist_soft_dtw, \
-    cdist_sax, TSLEARN_VALID_METRICS
+    cdist_sax, TSLEARN_VALID_METRICS, msm
 from tslearn.piecewise import SymbolicAggregateApproximation
 from tslearn.utils import (to_time_series_dataset, to_sklearn_dataset,
                            check_dims)
 from tslearn.bases import BaseModelPackage
 
 neighbors.VALID_METRICS['brute'].extend(['dtw', 'softdtw', 'sax', 'ctw'])
-
 
 class KNeighborsTimeSeriesMixin():
     """Mixin for k-neighbors searches on Time Series."""
@@ -72,6 +71,8 @@ class KNeighborsTimeSeriesMixin():
             X_ = cdist_sax(X, self._sax.breakpoints_avg_,
                            self._sax._X_fit_dims_[1], other_X,
                            n_jobs=self.n_jobs)
+        elif self._ts_metric == "msm":
+        	X_ = msm(X, other_X)
         else:
             raise ValueError("Invalid metric recorded: %s" %
                              self._ts_metric)
@@ -324,6 +325,8 @@ class KNeighborsTimeSeries(KNeighborsTimeSeriesMixin, NearestNeighbors,
                 X_ = cdist_ctw(X, self._ts_fit, **metric_params)
             elif self._ts_metric == "softdtw":
                 X_ = cdist_soft_dtw(X, self._ts_fit, **metric_params)
+            elif self._ts_metric == "msm":
+            	X_ = msm(X, self._ts_fit)
             else:
                 raise ValueError("Invalid metric recorded: %s" %
                                  self._ts_metric)
