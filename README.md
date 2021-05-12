@@ -1,6 +1,6 @@
 <!-- Our title -->
 <div align="center">
-  <h3>tslearn </h3>
+  <h3>tslearn new </h3>
 </div>
 
 <!-- Short description -->
